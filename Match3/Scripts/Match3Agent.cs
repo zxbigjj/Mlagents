@@ -76,6 +76,8 @@ namespace Unity.MLAgentsExamples
         private ModelOverrider m_ModelOverrider;
 
         private const float k_RewardMultiplier = 0.01f;
+
+        public int TotalReward = 0;
         protected override void Awake()
         {
             base.Awake();
@@ -107,12 +109,14 @@ namespace Unity.MLAgentsExamples
                 AnimatedUpdate();
             }
 
-            // We can't use the normal MaxSteps system to decide when to end an episode,
+            // We can't use the normal MaxSteps system to decide when to end an episode, 不是用最大帧数来计算 用步数来计算
             // since different agents will make moves at different frequencies (depending on the number of
             // chained moves). So track a number of moves per Agent and manually interrupt the episode.
             if (m_MovesMade >= MaxMoves)
             {
                 EpisodeInterrupted();
+                print("TotalReward" + TotalReward);
+                TotalReward = 0;
             }
         }
 
@@ -135,6 +139,7 @@ namespace Unity.MLAgentsExamples
             {
                 // Shuffle the board until we have a valid move.
                 Board.InitSettled();
+                
             }
             RequestDecision();
             m_MovesMade++;
@@ -164,6 +169,7 @@ namespace Unity.MLAgentsExamples
                 case State.ClearMatched:
                     var pointsEarned = Board.ClearMatchedCells();
                     AddReward(k_RewardMultiplier * pointsEarned);
+                    TotalReward += pointsEarned;//一个正方形是一分 一个五边形是两分 一个三角形是三分
                     nextState = State.Drop;
                     break;
                 case State.Drop:
