@@ -1,0 +1,65 @@
+{
+    "Match3VectorObs": {
+        "checkpoints": [
+            {
+                "steps": 3499888,
+                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-3499888.onnx",
+                "reward": null,
+                "creation_time": 1699131621.7678769,
+                "auxillary_file_paths": [
+                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-3499888.pt"
+                ]
+            },
+            {
+                "steps": 3999988,
+                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-3999988.onnx",
+                "reward": null,
+                "creation_time": 1699134879.1454058,
+                "auxillary_file_paths": [
+                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-3999988.pt"
+                ]
+            },
+            {
+                "steps": 4499884,
+                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-4499884.onnx",
+                "reward": null,
+                "creation_time": 1699138127.7366776,
+                "auxillary_file_paths": [
+                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-4499884.pt"
+                ]
+            },
+            {
+                "steps": 4999984,
+                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-4999984.onnx",
+                "reward": null,
+                "creation_time": 1699141382.7210734,
+                "auxillary_file_paths": [
+                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-4999984.pt"
+                ]
+            },
+            {
+                "steps": 5000496,
+                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-5000496.onnx",
+                "reward": null,
+                "creation_time": 1699141382.8883014,
+                "auxillary_file_paths": [
+                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-5000496.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5000496,
+            "file_path": "results\\ppo\\Match3VectorObs.onnx",
+            "reward": null,
+            "creation_time": 1699141382.8883014,
+            "auxillary_file_paths": [
+                "results\\ppo\\Match3VectorObs\\Match3VectorObs-5000496.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
