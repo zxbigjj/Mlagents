@@ -75,7 +75,7 @@ namespace Unity.MLAgentsExamples
         private int m_MovesMade;
         private ModelOverrider m_ModelOverrider;
 
-        private const float k_RewardMultiplier = 0.01f;
+        private const float k_RewardMultiplier = 0.0001f;
 
         public int TotalReward = 0;
         protected override void Awake()

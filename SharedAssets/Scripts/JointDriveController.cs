@@ -13,21 +13,21 @@ namespace Unity.MLAgentsExamples
     {
         [Header("Body Part Info")][Space(10)] public ConfigurableJoint joint;
         public Rigidbody rb;
-        [HideInInspector] public Vector3 startingPos;
-        [HideInInspector] public Quaternion startingRot;
+        [HideInInspector] public Vector3 startingPos;//最初位置
+        [HideInInspector] public Quaternion startingRot;//最初旋转
 
         [Header("Ground & Target Contact")]
         [Space(10)]
         public GroundContact groundContact;
 
-        public TargetContact targetContact;
+        //public TargetContact targetContact;
 
         [FormerlySerializedAs("thisJDController")]
-        [HideInInspector] public JointDriveController thisJdController;
+        [HideInInspector] public JointDriveController thisJdController;//当前的JointDriveController
 
         [Header("Current Joint Settings")]
         [Space(10)]
-        public Vector3 currentEularJointRotation;
+        public Vector3 currentEularJointRotation;//当前欧拉旋转
 
         [HideInInspector] public float currentStrength;
         public float currentXNormalizedRot;
@@ -36,20 +36,20 @@ namespace Unity.MLAgentsExamples
 
         [Header("Other Debug Info")]
         [Space(10)]
-        public Vector3 currentJointForce;
+        public Vector3 currentJointForce;//解算器为满足所有约束(当前认为是关节)而施加的力
 
-        public float currentJointForceSqrMag;
-        public Vector3 currentJointTorque;
-        public float currentJointTorqueSqrMag;
-        public AnimationCurve jointForceCurve = new AnimationCurve();
-        public AnimationCurve jointTorqueCurve = new AnimationCurve();
+        public float currentJointForceSqrMag;//力这个向量的长度
+        public Vector3 currentJointTorque;//解算器为满足所有约束而施加的扭矩(旋转的力)
+        public float currentJointTorqueSqrMag;//这个旋转力向量的长度
+        public AnimationCurve jointForceCurve = new AnimationCurve();//创造保存某时刻力的时间轴(不确定)
+        public AnimationCurve jointTorqueCurve = new AnimationCurve();//创造保存某时刻旋转力的时间轴(不确定)
 
         /// <summary>
         /// Reset body part to initial configuration.
         /// </summary>
         public void Reset(BodyPart bp)
         {
-            bp.rb.transform.position = bp.startingPos;
+            bp.rb.transform.position = bp.startingPos;//
             bp.rb.transform.rotation = bp.startingRot;
             bp.rb.velocity = Vector3.zero;
             bp.rb.angularVelocity = Vector3.zero;
@@ -58,10 +58,10 @@ namespace Unity.MLAgentsExamples
                 bp.groundContact.touchingGround = false;
             }
 
-            if (bp.targetContact)
-            {
-                bp.targetContact.touchingTarget = false;
-            }
+            //if (bp.targetContact)
+            //{
+            //    bp.targetContact.touchingTarget = false;
+            //}
         }
 
         /// <summary>
@@ -69,24 +69,24 @@ namespace Unity.MLAgentsExamples
         /// </summary>
         public void SetJointTargetRotation(float x, float y, float z)
         {
-            x = (x + 1f) * 0.5f;
+            x = (x + 1f) * 0.5f;//初始位置为中点0.5
             y = (y + 1f) * 0.5f;
             z = (z + 1f) * 0.5f;
 
-            var xRot = Mathf.Lerp(joint.lowAngularXLimit.limit, joint.highAngularXLimit.limit, x);
+            var xRot = Mathf.Lerp(joint.lowAngularXLimit.limit, joint.highAngularXLimit.limit, x);//获取最低与最高之间 百分之x的值
             var yRot = Mathf.Lerp(-joint.angularYLimit.limit, joint.angularYLimit.limit, y);
             var zRot = Mathf.Lerp(-joint.angularZLimit.limit, joint.angularZLimit.limit, z);
 
             currentXNormalizedRot =
-                Mathf.InverseLerp(joint.lowAngularXLimit.limit, joint.highAngularXLimit.limit, xRot);
+                Mathf.InverseLerp(joint.lowAngularXLimit.limit, joint.highAngularXLimit.limit, xRot);//返回0-1之间值
             currentYNormalizedRot = Mathf.InverseLerp(-joint.angularYLimit.limit, joint.angularYLimit.limit, yRot);
             currentZNormalizedRot = Mathf.InverseLerp(-joint.angularZLimit.limit, joint.angularZLimit.limit, zRot);
 
-            joint.targetRotation = Quaternion.Euler(xRot, yRot, zRot);
-            currentEularJointRotation = new Vector3(xRot, yRot, zRot);
+            joint.targetRotation = Quaternion.Euler(xRot, yRot, zRot);//按欧拉角旋转
+            currentEularJointRotation = new Vector3(xRot, yRot, zRot);//设置当前旋转
         }
 
-        public void SetJointStrength(float strength)
+        public void SetJointStrength(float strength)//设置Joint关节SlerpDrive的力
         {
             var rawVal = (strength + 1f) * 0.5f * thisJdController.maxJointForceLimit;
             var jd = new JointDrive

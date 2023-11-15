@@ -319,7 +319,7 @@ namespace Unity.MLAgentsExamples
             // 1 in N chance to get a type-2 special
             // 2 in N chance to get a type-1 special
             // otherwise 0 (boring)
-            var N = 10;
+            var N = NumSpecialTypes-1;
             var val = m_Random.Next(0, N);
             if (val == 0)
             {

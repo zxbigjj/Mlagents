@@ -2,58 +2,58 @@
     "Match3VectorObs": {
         "checkpoints": [
             {
-                "steps": 3499888,
-                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-3499888.onnx",
-                "reward": null,
-                "creation_time": 1699131621.7678769,
+                "steps": 2999989,
+                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-2999989.onnx",
+                "reward": 0.7008000612258911,
+                "creation_time": 1699755245.9194345,
                 "auxillary_file_paths": [
-                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-3499888.pt"
+                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-2999989.pt"
                 ]
             },
             {
-                "steps": 3999988,
-                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-3999988.onnx",
+                "steps": 3353908,
+                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-3353908.onnx",
                 "reward": null,
-                "creation_time": 1699134879.1454058,
+                "creation_time": 1699759652.3553915,
                 "auxillary_file_paths": [
-                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-3999988.pt"
+                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-3353908.pt"
                 ]
             },
             {
-                "steps": 4499884,
-                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-4499884.onnx",
+                "steps": 3458827,
+                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-3458827.onnx",
                 "reward": null,
-                "creation_time": 1699138127.7366776,
+                "creation_time": 1699761321.857128,
                 "auxillary_file_paths": [
-                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-4499884.pt"
+                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-3458827.pt"
                 ]
             },
             {
-                "steps": 4999984,
-                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-4999984.onnx",
+                "steps": 8999980,
+                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-8999980.onnx",
                 "reward": null,
-                "creation_time": 1699141382.7210734,
+                "creation_time": 1699972284.032036,
                 "auxillary_file_paths": [
-                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-4999984.pt"
+                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-8999980.pt"
                 ]
             },
             {
-                "steps": 5000496,
-                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-5000496.onnx",
-                "reward": null,
-                "creation_time": 1699141382.8883014,
+                "steps": 9030723,
+                "file_path": "results\\ppo\\Match3VectorObs\\Match3VectorObs-9030723.onnx",
+                "reward": 0.03629999980330467,
+                "creation_time": 1699972694.9349918,
                 "auxillary_file_paths": [
-                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-5000496.pt"
+                    "results\\ppo\\Match3VectorObs\\Match3VectorObs-9030723.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 5000496,
+            "steps": 9030723,
             "file_path": "results\\ppo\\Match3VectorObs.onnx",
-            "reward": null,
-            "creation_time": 1699141382.8883014,
+            "reward": 0.03629999980330467,
+            "creation_time": 1699972694.9349918,
             "auxillary_file_paths": [
-                "results\\ppo\\Match3VectorObs\\Match3VectorObs-5000496.pt"
+                "results\\ppo\\Match3VectorObs\\Match3VectorObs-9030723.pt"
             ]
         }
     },

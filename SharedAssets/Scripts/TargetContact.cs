@@ -12,12 +12,13 @@ namespace Unity.MLAgentsExamples
     {
         [Header("Detect Targets")] public bool touchingTarget;
         const string k_Target = "target"; // Tag on target object.
-
+       
         /// <summary>
         /// Check for collision with a target.
         /// </summary>
         void OnCollisionEnter(Collision col)
         {
+            
             if (col.transform.CompareTag(k_Target))
             {
                 touchingTarget = true;

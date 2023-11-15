@@ -35,7 +35,7 @@ default_settings:
   init_path: null
   keep_checkpoints: 5
   checkpoint_interval: 500000
-  max_steps: 5000000
+  max_steps: 50000000
   time_horizon: 128
   summary_freq: 10000
   threaded: false
@@ -165,7 +165,7 @@ behaviors:
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
-    max_steps: 5000000
+    max_steps: 50000000
     time_horizon: 128
     summary_freq: 10000
     threaded: false
@@ -194,8 +194,8 @@ checkpoint_settings:
   run_id: ppo
   initialize_from: null
   load_model: false
-  resume: false
-  force: true
+  resume: true
+  force: false
   train_model: false
   inference: false
   results_dir: results
