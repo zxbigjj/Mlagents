@@ -12,7 +12,10 @@ namespace Unity.MLAgentsExamples
     {
         [Header("Detect Targets")] public bool touchingTarget;
         const string k_Target = "target"; // Tag on target object.
-       
+        private void Start()
+        {
+            Debug.LogError(gameObject);//观察那个物体挂载此脚本
+        }
         /// <summary>
         /// Check for collision with a target.
         /// </summary>

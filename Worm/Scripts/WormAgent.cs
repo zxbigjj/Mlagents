@@ -7,7 +7,7 @@ using Unity.MLAgents.Sensors;
 [RequireComponent(typeof(JointDriveController))] // Required to set joint forces
 public class WormAgent : Agent
 {
-    const float m_MaxWalkingSpeed = 10; //The max walking speed
+    const float m_MaxWalkingSpeed = 10; //The max walking speed 自设定的最大移速 用于计算奖励
 
     [Header("Target Prefabs")] public Transform TargetPrefab; //Target prefab to use in Dynamic envs
     private Transform m_Target; //Target the agent will walk towards during training.
@@ -84,7 +84,7 @@ public class WormAgent : Agent
         //Note: You can get these velocities in world space as well but it may not train as well.
         sensor.AddObservation(m_OrientationCube.transform.InverseTransformDirection(bp.rb.velocity));
         sensor.AddObservation(m_OrientationCube.transform.InverseTransformDirection(bp.rb.angularVelocity));
-
+        //InverseTransformDirection将世界空间坐标转换成本地相对坐标
 
         if (bp.rb.transform != bodySegment0)
         {
@@ -102,7 +102,7 @@ public class WormAgent : Agent
     {
         RaycastHit hit;
         float maxDist = 10;
-        if (Physics.Raycast(bodySegment0.position, Vector3.down, out hit, maxDist))
+        if (Physics.Raycast(bodySegment0.position, Vector3.down, out hit, maxDist))//观察与地面距离
         {
             sensor.AddObservation(hit.distance / maxDist);
         }
@@ -111,13 +111,14 @@ public class WormAgent : Agent
 
         var cubeForward = m_OrientationCube.transform.forward;
         var velGoal = cubeForward * m_MaxWalkingSpeed;
-        sensor.AddObservation(m_OrientationCube.transform.InverseTransformDirection(velGoal));
+        sensor.AddObservation(m_OrientationCube.transform.InverseTransformDirection(velGoal));//观察我与目标的方向
         sensor.AddObservation(Quaternion.Angle(m_OrientationCube.transform.rotation,
                                   m_JdController.bodyPartsDict[bodySegment0].rb.rotation) / 180);
         sensor.AddObservation(Quaternion.FromToRotation(bodySegment0.forward, cubeForward));
+        //创建一个从 fromDirection 旋转到 toDirection 的旋转 观察到cubeForward所指向的方向需要多少旋转
 
         //Add pos of target relative to orientation cube
-        sensor.AddObservation(m_OrientationCube.transform.InverseTransformPoint(m_Target.transform.position));
+        sensor.AddObservation(m_OrientationCube.transform.InverseTransformPoint(m_Target.transform.position));//观察距离
 
         foreach (var bodyPart in m_JdController.bodyPartsList)
         {
@@ -157,7 +158,7 @@ public class WormAgent : Agent
         }
     }
 
-    void FixedUpdate()
+    void FixedUpdate()//FixedUpdate可以保持固定的时间间隔调用 Update会不稳定几秒一帧
     {
         UpdateOrientationObjects();
 
@@ -183,9 +184,10 @@ public class WormAgent : Agent
         //Add the product of these two rewards
         AddReward(velReward * facingRew);
     }
-
+    
     /// <summary>
     /// Normalized value of the difference in actual speed vs goal walking speed.
+    /// 实际速度和目标速度之差归一化值
     /// </summary>
     public float GetMatchingVelocityReward(Vector3 velocityGoal, Vector3 actualVelocity)
     {
